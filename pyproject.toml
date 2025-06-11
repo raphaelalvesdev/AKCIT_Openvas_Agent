@@ -1,0 +1,23 @@
+[project]
+name = "akcit_openvas_agent"
+version = "0.1.0"
+description = "AKCIT_Openvas_Agent using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=0.126.0,<1.0.0"
+]
+
+[project.scripts]
+akcit_openvas_agent = "akcit_openvas_agent.main:run"
+run_crew = "akcit_openvas_agent.main:run"
+train = "akcit_openvas_agent.main:train"
+replay = "akcit_openvas_agent.main:replay"
+test = "akcit_openvas_agent.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
