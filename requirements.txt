@@ -1,0 +1,4 @@
+gvm-tools
+python-dotenv
+crewai
+crewai-tools
