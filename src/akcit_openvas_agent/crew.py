@@ -16,8 +16,7 @@ def get_OpenVAS_results(question: str):
     """
     result_manager = ResultManager()
     context = result_manager.result()
-    response = get_response_from_openai(messages)
-    return response
+    return context
 
 @tool
 def create_OpenVAS_tasks(question: str):
@@ -46,7 +45,8 @@ class AkcitOpenvasAgent():
     def researcher(self) -> Agent:
         return Agent(
             config=self.agents_config['researcher'], # type: ignore[index]
-            verbose=True
+            verbose=True,
+            tools=[create_OpenVAS_tasks]
         )
 
     @agent
@@ -54,6 +54,7 @@ class AkcitOpenvasAgent():
         return Agent(
             config=self.agents_config['reporting_analyst'], # type: ignore[index]
             verbose=True
+            tools=[get_OpenVAS_results]
         )
 
     # To learn more about structured task outputs,
