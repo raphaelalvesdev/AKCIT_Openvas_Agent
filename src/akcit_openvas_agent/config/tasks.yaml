@@ -1,17 +1,62 @@
 research_task:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Create and execute OpenVAS vulnerability scanning tasks for the target host: {target_host}.
+    Use your tools to create a new scanning task named '{task_name}' in OpenVAS.
+    Configure the scan with the following parameters:
+    - Target Host: {target_host}
+    - Scan Configuration: {port_range}
+    - Task Name: {task_name}
+    - Scan Type: Full vulnerability assessment
+    
+    Execute the task creation process and start the scanning immediately.
+    Provide detailed feedback about the scanning process and current status.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
+    A detailed confirmation message containing:
+    - Task creation status and unique task ID
+    - Target configuration: {target_host} with {port_range} port configuration
+    - Scan initiation confirmation for task '{task_name}'
+    - Current scan status and estimated completion time
+    - Instructions for monitoring the scan progress
+    - Any errors or warnings encountered during setup
+    Formatted as clear bullet points with headings for easy reading.
   agent: researcher
 
 reporting_task:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Analyze completed OpenVAS scan results for the task '{task_name}' targeting {target_host}.
+    Use your tools to retrieve and interpret vulnerability scan results from OpenVAS.
+    Process the XML results to extract meaningful security insights and create a comprehensive report.
+    Focus on vulnerabilities found on host {target_host} and provide actionable remediation steps.
+    Categorize findings by severity and provide risk assessment for the target system.
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
+    A comprehensive vulnerability assessment report for {target_host} in markdown format containing:
+    
+    # Vulnerability Assessment Report - {target_host}
+    ## Executive Summary
+    - Overall security posture assessment
+    - Critical findings summary
+    - Risk level classification
+    
+    ## Scan Details
+    - Target: {target_host}
+    - Task Name: {task_name}
+    - Scan Configuration: {port_range}
+    - Scan Date: {current_year}
+    
+    ## Vulnerability Findings
+    For each vulnerability found:
+    - **Vulnerability Name**: [CVE or vulnerability name]
+    - **Severity**: [Critical/High/Medium/Low with CVSS score]
+    - **Host**: {target_host}
+    - **Port/Service**: [Affected port and service]
+    - **Description**: [Technical details and impact]
+    - **Solution**: [Specific remediation steps]
+    - **References**: [CVE links, vendor advisories]
+    
+    ## Risk Assessment & Recommendations
+    - Prioritized remediation timeline
+    - Network security recommendations
+    - Monitoring and follow-up actions
+    
+    The report should be professional, actionable, and ready for security team review.
   agent: reporting_analyst

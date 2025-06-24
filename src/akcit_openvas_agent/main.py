@@ -4,7 +4,7 @@ import warnings
 
 from datetime import datetime
 
-from akcit_openvas_agent.crew import AkcitOpenvasAgent
+from .crew import AkcitOpenvasAgent
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
@@ -18,7 +18,10 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'AI LLMs',
+        'target_host': '192.168.1.1',  # IP ou host alvo para scan
+        'scan_name': 'Security Assessment',  # Nome da tarefa de scan
+        'port_range': 'Full and fast',  # Tipo de configuração de portas
+        'task_name': 'Vulnerability_Scan_2025',  # Nome específico da tarefa
         'current_year': str(datetime.now().year)
     }
     
@@ -33,7 +36,10 @@ def train():
     Train the crew for a given number of iterations.
     """
     inputs = {
-        "topic": "AI LLMs",
+        'target_host': '192.168.1.100',
+        'scan_name': 'Training Security Assessment',
+        'port_range': 'Full and fast',
+        'task_name': 'Training_Vulnerability_Scan',
         'current_year': str(datetime.now().year)
     }
     try:
@@ -57,8 +63,11 @@ def test():
     Test the crew execution and returns the results.
     """
     inputs = {
-        "topic": "AI LLMs",
-        "current_year": str(datetime.now().year)
+        'target_host': '10.0.0.1',
+        'scan_name': 'Test Security Assessment',
+        'port_range': 'Full and fast',
+        'task_name': 'Test_Vulnerability_Scan',
+        'current_year': str(datetime.now().year)
     }
     
     try:

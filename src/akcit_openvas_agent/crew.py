@@ -1,9 +1,10 @@
 from crewai import Agent, Crew, Process, Task
+from crewai.tools import tool
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
-from tools.gvm_workflow import GVMWorkflow
-from tools.gvm_results import ResultManager
+from .tools.gvm_workflow import GVMWorkflow
+from .tools.gvm_results import ResultManager
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
@@ -34,12 +35,12 @@ class AkcitOpenvasAgent():
 
     agents: List[BaseAgent]
     tasks: List[Task]
-
+    agents_config = "config/agents.yaml"
+    tasks_config = "config/tasks.yaml"
     # Learn more about YAML configuration files here:
     # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
     # Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
-    
-    # If you would like to add tools to your agents, you can learn more about it here:
+      # If you would like to add tools to your agents, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
     def researcher(self) -> Agent:
@@ -53,7 +54,7 @@ class AkcitOpenvasAgent():
     def reporting_analyst(self) -> Agent:
         return Agent(
             config=self.agents_config['reporting_analyst'], # type: ignore[index]
-            verbose=True
+            verbose=True,
             tools=[get_OpenVAS_results]
         )
 
