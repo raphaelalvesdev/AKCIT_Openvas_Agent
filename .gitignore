@@ -2,3 +2,5 @@
 __pycache__/
 .DS_Store
 CEIA_OpenVAS_Agent-main/
+
+.venv
